@@ -65,4 +65,9 @@ public class UI_Joystick : UI_Scene
 			value.joyTouch = mouse;
 		}
 	}
+
+	public void Test(PointerEventData data)
+	{
+		Debug.Log("클릭");
+	}
 }

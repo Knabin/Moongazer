@@ -57,4 +57,9 @@ public class Util
 		// 못 찾은 경우
 		return null;
 	}
+
+	public static bool IsAnimationDone(Animator animator, string name)
+	{
+		return animator.GetCurrentAnimatorStateInfo(0).IsName(name) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f;
+	}
 }

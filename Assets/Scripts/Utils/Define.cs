@@ -68,4 +68,10 @@ public class Define
 		QuarterViewManual,
 		EventView,
 	}
+
+	public enum ItemType
+	{
+		Field,
+		Potion,
+	}
 }

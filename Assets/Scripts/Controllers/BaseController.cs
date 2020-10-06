@@ -28,7 +28,7 @@ public abstract class BaseController : MonoBehaviour
 			switch (_state)
 			{
 				case Define.State.Idle:
-					anim.CrossFade("IDLE", 0.1f);
+					anim.CrossFade("IDLE", 0.2f);
 					break;
 				case Define.State.Moving:
 					anim.CrossFade("WALK", 0.1f);
@@ -39,6 +39,7 @@ public abstract class BaseController : MonoBehaviour
 				case Define.State.Jump:
 					break;
 				case Define.State.Attack:
+					anim.CrossFade("attackA1", 0.1f);
 					break;
 				case Define.State.Skill:
 					break;

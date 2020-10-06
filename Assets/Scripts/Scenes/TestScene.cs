@@ -14,6 +14,8 @@ public class TestScene : BaseScene
 		base.Init();
 
 		SceneType = Define.Scene.Test;
+		Managers.UI.ShowSceneUI<UI_Attack>();
+		Managers.UI.ShowSceneUI<UI_Status>();
 		Managers.UI.ShowSceneUI<UI_Joystick>();
 		Managers.UI.ShowSceneUI<UI_Menu>();
 

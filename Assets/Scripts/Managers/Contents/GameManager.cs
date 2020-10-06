@@ -12,6 +12,7 @@ public class GameManager
     Dictionary<int, GameObject> _env = new Dictionary<int, GameObject>();*/
 	GameObject _player;
 	HashSet<GameObject> _monsters = new HashSet<GameObject>();
+	Dictionary<int, Data.Item> _items = new Dictionary<int, Data.Item>();
 
 	public Action<int> OnSpawnEvent;
 

@@ -33,4 +33,30 @@ namespace Data
 	}
 
 	#endregion
+
+	#region Item
+	[SerializeField]
+	public class Item
+	{
+		public int number;
+		public string name;
+		public Define.ItemType type;
+	}
+
+	[SerializeField]
+	public class ItemData : ILoader<int, Item>
+	{
+		public List<Item> items = new List<Item>();
+
+		public Dictionary<int, Item> MakeDict()
+		{
+			Dictionary<int, Item> dict = new Dictionary<int, Item>();
+
+			foreach (Item item in items)
+				dict.Add(item.number, item);
+
+			return dict;
+		}
+	}
+	#endregion
 }
