@@ -15,7 +15,6 @@ public class PlayerStat : Stat
 		set
 		{
 			_exp = value;
-			// 레벨업 체크
 
 			int level = Level;
 			while (true)
@@ -45,7 +44,7 @@ public class PlayerStat : Stat
 		SetStat(1);
 		_exp = 0;
 		_defence = 5;
-		_moveSpeed = 5.0f;
+		_moveSpeed = 8.0f;
 		_gold = 0;
 	}
 

@@ -16,7 +16,6 @@ public class Define
 		Idle,
 		Moving,
 		Run,
-		Jump,
 		Attack,
 		Skill,
 		Defence,

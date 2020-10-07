@@ -14,14 +14,16 @@ public class TestScene : BaseScene
 		base.Init();
 
 		SceneType = Define.Scene.Test;
+		
+		// 초기화 작업
+		GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "Player");
+		Camera.main.gameObject.GetOrAddComponent<CameraController>().SetTarget(player);
+
 		Managers.UI.ShowSceneUI<UI_Attack>();
 		Managers.UI.ShowSceneUI<UI_Status>();
 		Managers.UI.ShowSceneUI<UI_Joystick>();
 		Managers.UI.ShowSceneUI<UI_Menu>();
 
-		// 초기화 작업
-		GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "Player");
-		Camera.main.gameObject.GetOrAddComponent<CameraController>().SetTarget(player);
 
 		GameObject go = new GameObject { name = "SpawningPool" };
 		SpawningPool pool = go.GetOrAddComponent<SpawningPool>();

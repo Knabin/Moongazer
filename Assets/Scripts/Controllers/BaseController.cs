@@ -36,16 +36,17 @@ public abstract class BaseController : MonoBehaviour
 				case Define.State.Run:
 					anim.CrossFade("RUN", 0.1f);
 					break;
-				case Define.State.Jump:
-					break;
 				case Define.State.Attack:
 					anim.CrossFade("attackA1", 0.1f);
 					break;
 				case Define.State.Skill:
+					
 					break;
 				case Define.State.Defence:
+					anim.CrossFade("DEFENCE", 0.1f);
 					break;
 				case Define.State.Die:
+					anim.CrossFade("DIE", 0.1f);
 					break;
 				default:
 					break;
@@ -70,9 +71,6 @@ public abstract class BaseController : MonoBehaviour
 				break;
 			case Define.State.Run:
 				UpdateRun();
-				break;
-			case Define.State.Jump:
-				UpdateJump();
 				break;
 			case Define.State.Attack:
 				UpdateAttack();
@@ -100,10 +98,6 @@ public abstract class BaseController : MonoBehaviour
 
 	}
 	protected virtual void UpdateRun()
-	{
-
-	}
-	protected virtual void UpdateJump()
 	{
 
 	}
