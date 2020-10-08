@@ -89,6 +89,9 @@ public abstract class BaseController : MonoBehaviour
 
 	public abstract void Init();
 
+	public virtual void OnAttacked(Stat attacker)
+	{
+	}
 	protected virtual void UpdateIdle()
 	{
 

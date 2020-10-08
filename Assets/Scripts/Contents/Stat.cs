@@ -27,17 +27,16 @@ public class Stat : MonoBehaviour
 	private void Start()
 	{
 		_level = 1;
-		_hp = 100;
-		_maxHp = 100;
-		_attack = 10;
-		_defence = 5;
-		_moveSpeed = 5.0f;
+
+		SetStat(gameObject.name);
 	}
 
 	public virtual void OnAttacked(Stat attacker)
 	{
 		int damage = Mathf.Max(0, attacker.Attack - Defence);
 		Hp -= damage;
+		GetComponent<Animator>().SetTrigger("Attacked");
+		//GetComponent<BaseController>().State = Define.State.Defence;
 
 		if (Hp <= 0)
 		{
@@ -46,15 +45,51 @@ public class Stat : MonoBehaviour
 		}
 	}
 
+	public virtual void OnAttacked(int amount)
+	{
+		int damage = Mathf.Max(0, amount - Defence);
+		Hp -= damage;
+		GetComponent<Animator>().SetTrigger("Attacked");
+
+		if (Hp <= 0)
+		{
+			Hp = 0;
+			OnDead();
+		}
+	}
+
+	public void SetStat(string enemyName)
+	{
+		Dictionary<int, Data.Stat> dict = Managers.Data.EnemyDict;
+		int num = Managers.Data.EnemyNumDict[enemyName];
+		Data.Stat stat = dict[num];
+
+		_hp = stat.maxHp;
+		_maxHp = stat.maxHp;
+		_attack = stat.attack;
+	}
+
+	protected virtual void OnDead()
+	{
+		PlayerStat playerStat = Managers.Game.GetPlayer().GetComponent<PlayerStat>();
+
+		if (playerStat != null)
+		{
+			playerStat.Exp += Level * 5;
+		}
+
+		gameObject.SetActive(false);
+	}
+
 	protected virtual void OnDead(Stat attacker)
 	{
 		PlayerStat playerStat = attacker as PlayerStat;
 
 		if (playerStat != null)
 		{
-			playerStat.Exp += 15;
+			playerStat.Exp += Level * 4;
 		}
 
-		Managers.Game.Destroy(gameObject);
+		gameObject.SetActive(false);
 	}
 }

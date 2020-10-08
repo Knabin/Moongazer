@@ -35,14 +35,25 @@ public class UI_Status : UI_Scene
 
 	public void SetUI()
 	{
-		PlayerStat stat = Managers.Game.GetPlayer().GetComponent<PlayerStat>();
+		PlayerStat stat = Managers.Game.GetPlayer().GetOrAddComponent<PlayerStat>();
 
-		Data.Stat st;
+		if (stat == null) return;
+
+		int maxExp;
+		int minExp;
+
+		Data.Stat st, st2;
 		if (Managers.Data.StatDict.TryGetValue(stat.Level + 1, out st) == false)
-			st.totalExp = stat.Exp;
+			maxExp = stat.Exp;
+		else maxExp = st.totalExp;
+
+		if (Managers.Data.StatDict.TryGetValue(stat.Level - 1, out st2) == false)
+			minExp = 0;
+		else minExp = st2.totalExp;
+
 
 		float hpPercent = (float)stat.Hp / stat.MaxHp;
-		float expPercent = (float)stat.Exp / st.totalExp;
+		float expPercent = (float)(stat.Exp - minExp) / (maxExp - minExp);
 
 		Get<Text>((int)Texts.LevelText).text = $"{stat.Level}";
 		Get<Text>((int)Texts.HPText).text = $"{stat.Hp}";

@@ -46,6 +46,7 @@ public class PlayerController : BaseController
 		get { return _skill; }
 		set
 		{
+			isJumping = true;
 			_skill = value;
 			switch (_skill)
 			{
@@ -100,6 +101,7 @@ public class PlayerController : BaseController
 	float speed = 8.0f;
 	Animator anim;
 	bool isAttacking = false;
+	bool isJumping = false;
 	float _time = 0.0f;
 
 	Dictionary<PlayerAttack, string> attackAnim = new Dictionary<PlayerAttack, string>();
@@ -128,6 +130,18 @@ public class PlayerController : BaseController
 		skillAnim.Add(PlayerSkill.Skill2, "SKILL2");
 		skillAnim.Add(PlayerSkill.Skill3, "SKILL3");
 		skillAnim.Add(PlayerSkill.Skill4, "SKILL4");
+	}
+
+	private void LateUpdate()
+	{
+		foreach (GameObject go in Managers.Game._monsters)
+		{
+			if (!go.activeSelf)
+			{
+				Managers.Game.Destroy(go);
+				break;
+			}
+		}
 	}
 
 	protected override void UpdateIdle()
@@ -231,7 +245,61 @@ public class PlayerController : BaseController
 
 	public void HitEvent()
 	{
-		Debug.Log("아얏");
+		float range = 2.0f;
+		float angle = 30f;
+		int attack = stat.Attack;
+		bool isCheckAngle = true;
+
+		// TODO: case마다 공격 범위, 공격 각도 조절 필요
+		// 평타, 2스킬 - 각도 + 거리
+		// 1스킬 - 거리만 체크(모든 방향에서 맞을 수 있음)
+		// 3스킬 - 레이캐스트 응용, 코루틴으로 두 번(상태 시작 시, 파티클 종료 시) 처리
+
+		if (State == Define.State.Skill)
+		{
+			switch (SkillType)
+			{
+				case PlayerSkill.Skill1:
+					range = 3.0f;
+					attack = (int)(attack * 1.3f);
+					isCheckAngle = false;
+					break;
+				case PlayerSkill.Skill2:
+					range = 2.0f;
+					attack = (int)(attack * 1.8f);
+					angle = 20f;
+					break;
+				case PlayerSkill.Skill3:
+					break;
+				case PlayerSkill.Skill4:
+					break;
+			}
+		}
+
+		foreach (GameObject go in Managers.Game._monsters)
+		{
+			// TODO: case마다 공격 범위, 공격 각도 조절 필요
+			// 평타, 2스킬 - 각도 + 거리
+			// 1스킬 - 거리만 체크(모든 방향에서 맞을 수 있음)
+			// 3스킬 - 레이캐스트 응용, 코루틴으로 두 번(상태 시작 시, 파티클 종료 시) 처리
+
+			if (Vector3.Distance(go.transform.position, transform.position) > range) continue;
+
+			Vector3 dirToTarget = (go.transform.position - transform.position).normalized;
+
+			if (!isCheckAngle || Vector3.Dot(transform.forward, dirToTarget) > Mathf.Cos(angle) * Mathf.Deg2Rad)
+			{
+				Stat st = go.GetComponent<Stat>();
+				st.OnAttacked(stat);
+			}
+		}
+	}
+
+	// TODO: OnAttacked(Stat attacker)
+	public override void OnAttacked(Stat attacker)
+	{
+		if (isJumping) return;
+		stat.OnAttacked(attacker);
 	}
 
 	public void SlashEvent()
@@ -259,6 +327,7 @@ public class PlayerController : BaseController
 
 	public void SkillEvent()
 	{
+		isJumping = false;
 		switch (SkillType)
 		{
 			case PlayerSkill.Skill1:
@@ -272,6 +341,7 @@ public class PlayerController : BaseController
 				break;
 			case PlayerSkill.Skill4:
 				buff.Play();
+				stat.Hp = Mathf.Max(stat.MaxHp, stat.Hp + stat.Attack * 5);
 				break;
 		}
 	}

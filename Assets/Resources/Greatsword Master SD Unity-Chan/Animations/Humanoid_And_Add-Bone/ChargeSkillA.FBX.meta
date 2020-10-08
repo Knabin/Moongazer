@@ -801,7 +801,7 @@ ModelImporter:
       name: ChargeSkillA_unlock
       takeName: Take 001
       internalID: 0
-      firstFrame: 10
+      firstFrame: 39
       lastFrame: 93
       wrapMode: 0
       orientationOffsetY: 0
@@ -822,8 +822,29 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.467179
+      - time: 0.1760831
         functionName: SkillEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.20640804
+        functionName: HitEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.26215568
+        functionName: SkillEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.29291323
+        functionName: HitEvent
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

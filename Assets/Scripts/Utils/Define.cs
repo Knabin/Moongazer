@@ -8,7 +8,7 @@ public class Define
 	{
 		Unknown,
 		Player,
-		Monster
+		Enemy
 	}
 
 	public enum State

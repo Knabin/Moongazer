@@ -1,0 +1,16 @@
+{
+  "stats": [
+    {
+      "level": "1",
+      "maxHp": "20",
+      "attack": "3",
+      "totalExp": "4"
+    },
+    {
+      "level": "2",
+      "maxHp": "40",
+      "attack": "5",
+      "totalExp": "8"
+    }
+  ]
+}

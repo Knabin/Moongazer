@@ -11,7 +11,7 @@ public class GameManager
     Dictionary<int, GameObject> _monsters = new Dictionary<int, GameObject>();
     Dictionary<int, GameObject> _env = new Dictionary<int, GameObject>();*/
 	GameObject _player;
-	HashSet<GameObject> _monsters = new HashSet<GameObject>();
+	public HashSet<GameObject> _monsters = new HashSet<GameObject>();
 	Dictionary<int, Data.Item> _items = new Dictionary<int, Data.Item>();
 
 	public Action<int> OnSpawnEvent;
@@ -24,7 +24,7 @@ public class GameManager
 
 		switch (type)
 		{
-			case Define.WorldObject.Monster:
+			case Define.WorldObject.Enemy:
 				_monsters.Add(go);
 				if (OnSpawnEvent != null)
 					OnSpawnEvent.Invoke(1);
@@ -54,7 +54,7 @@ public class GameManager
 
 		switch (type)
 		{
-			case Define.WorldObject.Monster:
+			case Define.WorldObject.Enemy:
 				{
 					if (_monsters.Contains(go))
 					{
