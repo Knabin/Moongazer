@@ -1,12 +1,24 @@
 {
   "items": [
     {
-      "index": "1",
-      "amount": "1"
+      "number": "1",
+      "name": "scroll",
+      "type": "0"
     },
     {
-      "index": "2",
-      "amount": "1"
+      "number": "2",
+      "name": "scroll",
+      "type": "0"
+    },
+    {
+      "number": "3",
+      "name": "ring",
+      "type": "0"
+    },
+    {
+      "number": "4",
+      "name": "scroll",
+      "type": "0"
     }
   ]
 }

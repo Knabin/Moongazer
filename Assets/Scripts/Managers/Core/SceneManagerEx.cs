@@ -6,11 +6,20 @@ using UnityEngine.SceneManagement;
 public class SceneManagerEx
 {
 	public BaseScene CurrentScene { get { return GameObject.FindObjectOfType<BaseScene>(); } }
+	public string nextScene;
 
 	public void LoadScene(Define.Scene type)
 	{
+		// 현재 씬 정리 -> 로딩씬 -> 이동 씬
+		// 현재 씬 정리
+		if(Managers.Game.GetPlayer() != null) Managers.Game.SaveStat();
 		Managers.Clear();
-		SceneManager.LoadScene(GetSceneName(type));
+
+		string sceneName = GetSceneName(type);
+
+		// 로딩 씬
+		nextScene = sceneName;
+		SceneManager.LoadScene("LoadingScene");
 	}
 
 	string GetSceneName(Define.Scene type)

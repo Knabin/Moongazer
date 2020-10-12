@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TitleScene : MonoBehaviour
+public class TitleScene : BaseScene
 {
-    void Start()
-    {
-        
-    }
+	public override void Clear()
+	{
+		//throw new System.NotImplementedException();
+	}
 
-    void Update()
-    {
-        
-    }
+	protected override void Init()
+	{
+		base.Init();
+
+		SceneType = Define.Scene.TitleScene;
+
+		Managers.UI.ShowSceneUI<UI_Title>();
+		Managers.Sound.Play("Bgm/Title", Define.Sound.Bgm);
+	}
 }

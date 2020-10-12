@@ -11,6 +11,12 @@
       "maxHp": "40",
       "attack": "5",
       "totalExp": "8"
+    },
+    {
+      "level": "3",
+      "maxHp": "500",
+      "attack": "15",
+      "totalExp": "100"
     }
   ]
 }

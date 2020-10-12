@@ -12,7 +12,7 @@ public abstract class UI_Base : MonoBehaviour
 	// 자식 클래스에서 Init 처리하게끔 abstract 처리
 	public abstract void Init();
 
-    private void Start()
+    private void Awake()
     {
 		Init();
     }

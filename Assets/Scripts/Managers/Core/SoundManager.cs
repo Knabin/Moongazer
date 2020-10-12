@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager
 {
 	AudioSource[] _audioSources = new AudioSource[(int)Define.Sound.MaxCount];
+	AudioMixer _audioMixer;
 	Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 	// MP3 Player	=> AudioSource
 	// MP3 음원		=> AudioClip
@@ -13,6 +15,7 @@ public class SoundManager
 	public void Init()
 	{
 		GameObject root = GameObject.Find("@Sound");
+		_audioMixer = Resources.Load("MyMixer") as AudioMixer;
 		if (root == null)
 		{
 			root = new GameObject { name = "@Sound" };
@@ -27,9 +30,13 @@ public class SoundManager
 				_audioSources[i] = go.AddComponent<AudioSource>();
 				go.transform.parent = root.transform;
 			}
+			_audioSources[(int)Define.Sound.Bgm].outputAudioMixerGroup = _audioMixer.FindMatchingGroups("BGM")[0];
+			_audioSources[(int)Define.Sound.Effect].outputAudioMixerGroup = _audioMixer.FindMatchingGroups("SFX")[0];
+			_audioSources[(int)Define.Sound.Enemy].outputAudioMixerGroup = _audioMixer.FindMatchingGroups("SFX")[0];
 
 			_audioSources[(int)Define.Sound.Bgm].loop = true;
 		}
+
 	}
 
 	public void Clear()
@@ -64,9 +71,15 @@ public class SoundManager
 			audioSource.clip = audioClip;
 			audioSource.Play();
 		}
-		else
+		else if (type == Define.Sound.Effect)
 		{
 			AudioSource audioSource = _audioSources[(int)Define.Sound.Effect];
+			audioSource.pitch = pitch;
+			audioSource.PlayOneShot(audioClip);
+		}
+		else 
+		{
+			AudioSource audioSource = _audioSources[(int)Define.Sound.Enemy];
 			audioSource.pitch = pitch;
 			audioSource.PlayOneShot(audioClip);
 		}

@@ -3,14 +3,14 @@
     {
       "level": "1",
       "maxHp": "50",
-      "attack": "5",
+      "attack": "4",
       "totalExp": "0"
     },
     {
       "level": "2",
       "maxHp": "75",
-      "attack": "10",
-      "totalExp": "20"
+      "attack": "8",
+      "totalExp": "40"
     },
     {
       "level": "3",
@@ -22,7 +22,7 @@
       "level": "4",
       "maxHp": "100",
       "attack": "30",
-      "totalExp": "160"
+      "totalExp": "150"
     }
   ]
 }

@@ -91,6 +91,7 @@ public class UIManager
 
 		if (root == null)
 			root = new GameObject { name = "@UI_Root" };
+		//root.GetOrAddComponent<UI_Root>();
 
 		go.transform.SetParent(Root.transform);
 
@@ -133,5 +134,10 @@ public class UIManager
 	{
 		CloseAllPopupUI();
 		_sceneUI = null;
+	}
+
+	public bool IsEmptyPopupStack()
+	{
+		return _popupStack.Count == 0;
 	}
 }

@@ -76,9 +76,9 @@ public class Stat : MonoBehaviour
 		if (playerStat != null)
 		{
 			playerStat.Exp += Level * 5;
+			playerStat.Gold += Random.Range(Level * 10, (Level + 5) * 10);
 		}
-
-		gameObject.SetActive(false);
+		gameObject.GetComponent<BaseController>().State = Define.State.Die;
 	}
 
 	protected virtual void OnDead(Stat attacker)
@@ -87,9 +87,9 @@ public class Stat : MonoBehaviour
 
 		if (playerStat != null)
 		{
-			playerStat.Exp += Level * 4;
+			playerStat.Exp += Level * 5;
+			playerStat.Gold += Random.Range(Level * 10, (Level + 5) * 10);
 		}
-
-		gameObject.SetActive(false);
+		gameObject.GetComponent<BaseController>().State = Define.State.Die;
 	}
 }

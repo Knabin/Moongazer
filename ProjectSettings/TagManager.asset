@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Water
   - Fly
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - 
   - 
   - Enemy
-  - 
-  - 
-  - 
+  - Block
+  - Npc
+  - Obj
   - 
   - 
   - 

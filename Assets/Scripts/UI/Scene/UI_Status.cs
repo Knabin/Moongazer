@@ -40,20 +40,20 @@ public class UI_Status : UI_Scene
 		if (stat == null) return;
 
 		int maxExp;
-		int minExp;
+		int nextExp;
 
 		Data.Stat st, st2;
-		if (Managers.Data.StatDict.TryGetValue(stat.Level + 1, out st) == false)
+		if (Managers.Data.StatDict.TryGetValue(stat.Level, out st) == false)
 			maxExp = stat.Exp;
 		else maxExp = st.totalExp;
 
-		if (Managers.Data.StatDict.TryGetValue(stat.Level - 1, out st2) == false)
-			minExp = 0;
-		else minExp = st2.totalExp;
+		if (Managers.Data.StatDict.TryGetValue(stat.Level + 1, out st2) == false)
+			nextExp = 1000;
+		else nextExp = st2.totalExp;
 
 
 		float hpPercent = (float)stat.Hp / stat.MaxHp;
-		float expPercent = (float)(stat.Exp - minExp) / (maxExp - minExp);
+		float expPercent = (float)(stat.Exp - maxExp) / nextExp;
 
 		Get<Text>((int)Texts.LevelText).text = $"{stat.Level}";
 		Get<Text>((int)Texts.HPText).text = $"{stat.Hp}";

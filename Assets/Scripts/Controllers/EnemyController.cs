@@ -7,7 +7,7 @@ public class EnemyController : BaseController
 {
 	Stat _stat;
 
-	float _scanRange = 10f;
+	float _scanRange = 8f;
 	float _attackRange = 1.2f;
 	float _moveSpeed = 3.0f;
 
@@ -17,6 +17,7 @@ public class EnemyController : BaseController
 	Quaternion _originRot;
 
 	NavMeshAgent _nav;
+	Animator _anim;
 
 	public override Define.State State
 	{
@@ -25,8 +26,7 @@ public class EnemyController : BaseController
 		{
 			_state = value;
 
-			Animator anim = GetComponent<Animator>();
-			anim.SetInteger("state", (int)_state);
+			_anim.SetInteger("state", (int)_state);
 			switch (_state)
 			{
 				case Define.State.Idle:
@@ -34,16 +34,16 @@ public class EnemyController : BaseController
 				case Define.State.Moving:
 					break;
 				case Define.State.Run:
-					_moveSpeed = 5.0f;
+					_moveSpeed = 3.0f;
 					break;
 				case Define.State.Attack:
 					break;
 				case Define.State.Skill:
-
 					break;
 				case Define.State.Defence:
 					break;
 				case Define.State.Die:
+					_anim.SetTrigger("IsDead");
 					break;
 				default:
 					break;
@@ -62,6 +62,7 @@ public class EnemyController : BaseController
 		_originRot = transform.rotation;
 
 		_nav = gameObject.GetOrAddComponent<NavMeshAgent>();
+		_anim = gameObject.GetOrAddComponent<Animator>();
 
 		//if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
 		//Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
@@ -158,10 +159,20 @@ public class EnemyController : BaseController
 			transform.rotation = Quaternion.Lerp(transform.rotation, quat, 20 * Time.deltaTime);
 		}
 	}
+	protected override void UpdateDie()
+	{
+		if (Util.IsAnimationDone(_anim, "Die"))
+		{
+			Managers.Quest.CheckQuest(GetComponent<ObjData>().id);
+			gameObject.SetActive(false);
+		}
+	}
+
 
 	public override void OnAttacked(Stat attacker)
 	{
-		Debug.Log("몬스터가 맞앗다");
+		if (State == Define.State.Moving || State == Define.State.Die) return;
+		_stat.OnAttacked(attacker);
 	}
 
 	void OnHitEvent()
@@ -170,7 +181,6 @@ public class EnemyController : BaseController
 		{
 			Stat targetStat = _lockTarget.GetComponent<Stat>();
 			BaseController ctr = _lockTarget.GetComponent<BaseController>();
-			//targetStat.OnAttacked(_stat);
 
 			if (targetStat.Hp > 0)
 			{

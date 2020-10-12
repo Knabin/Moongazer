@@ -24,24 +24,27 @@ public class Define
 
 	public enum Layer
 	{
-		Monster = 8,
-		Ground = 9,
-		Block = 10,
+		Enemy = 8,
+		Block = 9,
+		Npc = 10,
+		Obj = 11,
 	}
 
 	public enum Scene
 	{
 		Unknown,
-		Login,
-		Lobby,
-		Game,
-		Test,
+		TitleScene,
+		LoadingScene,
+		FieldScene,
+		DungeonScene,
+		TestScene,
 	}
 
 	public enum Sound
 	{
 		Bgm,
 		Effect,
+		Enemy,
 		MaxCount,
 	}
 
@@ -72,5 +75,12 @@ public class Define
 	{
 		Field,
 		Potion,
+	}
+
+	public enum ClickableType
+	{
+		None,
+		Table,
+		PasswordDoor,
 	}
 }

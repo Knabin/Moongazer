@@ -15,7 +15,7 @@ public class UI_Attack : UI_Scene
 		Skill2,
 		Skill3,
 		Skill4,
-		Potion,
+		//Potion,
 		Attack,
 		Defence,
 	}

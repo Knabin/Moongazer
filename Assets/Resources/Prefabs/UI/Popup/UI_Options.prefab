@@ -1705,7 +1705,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Slide It
+  m_Text: "\uD6A8\uACFC\uC74C"
 --- !u!1 &9208628980826131752
 GameObject:
   m_ObjectHideFlags: 0
@@ -2279,7 +2279,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Slide It
+  m_Text: "\uBC30\uACBD\uC74C\uC545"
 --- !u!1 &9209741494905034315
 GameObject:
   m_ObjectHideFlags: 0
@@ -2830,6 +2830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caed4d4e6e5e11647a62e71f32b23107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: e9a4f9d57dc8f6e4184e215f46e3f599, type: 2}
 --- !u!1 &9209741496312802975
 GameObject:
   m_ObjectHideFlags: 0

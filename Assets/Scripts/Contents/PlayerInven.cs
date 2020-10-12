@@ -8,7 +8,6 @@ public class PlayerInven : MonoBehaviour
 
 	private void Start()
 	{
-
 	}
 
 	public void AddItem(int itemIndex)
@@ -16,7 +15,8 @@ public class PlayerInven : MonoBehaviour
 		Dictionary<int, Data.Item> dict = Managers.Data.ItemDict;
 		Data.Item item = dict[itemIndex];
 
-		++Inventory[item];
+		if (Inventory.ContainsKey(item)) ++Inventory[item];
+		else Inventory.Add(item, 1);
 	}
 
 	public void RemoveItem(int itemIndex)
@@ -24,7 +24,7 @@ public class PlayerInven : MonoBehaviour
 		Dictionary<int, Data.Item> dict = Managers.Data.ItemDict;
 		Data.Item item = dict[itemIndex];
 
-		++Inventory[item];
+		--Inventory[item];
 		if(Inventory[item] <= 0)
 		{
 			Inventory.Remove(item);

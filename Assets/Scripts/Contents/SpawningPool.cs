@@ -16,9 +16,16 @@ public class SpawningPool : MonoBehaviour
 	[SerializeField]
 	Vector3 _spawnPos;
 	[SerializeField]
-	float _spawnRadius = 15.0f;
+	float _spawnRadius = 20.0f;
 	[SerializeField]
-	float _spawnTime = 5.0f;
+	float _spawnTime = 20.0f;
+
+	string _enemyName;
+
+	public void SetEnemyType(string enemyName)
+	{
+		_enemyName = enemyName;
+	}
 
 	public void AddMonsterCount(int value)
 	{
@@ -31,10 +38,16 @@ public class SpawningPool : MonoBehaviour
 
 	}
 
+	public void SetRadius(float radius)
+	{
+		_spawnRadius = radius;
+	}
+
 	void Start()
 	{
 		Managers.Game.OnSpawnEvent -= AddMonsterCount;
 		Managers.Game.OnSpawnEvent += AddMonsterCount;
+		_spawnPos = transform.position;
 	}
 
 	void Update()
@@ -49,7 +62,7 @@ public class SpawningPool : MonoBehaviour
 	{
 		++_reserveCount;
 		yield return new WaitForSeconds(Random.Range(0, _spawnTime));
-		GameObject obj = Managers.Game.Spawn(Define.WorldObject.Enemy, "Skeleton");
+		GameObject obj = Managers.Game.Spawn(Define.WorldObject.Enemy, _enemyName);
 		NavMeshAgent nma = obj.GetOrAddComponent<NavMeshAgent>();
 
 		Vector3 randPos;

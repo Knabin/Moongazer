@@ -71,6 +71,14 @@ public class PlayerStat : Stat
 		_attack = stat.attack;
 	}
 
+	public void SetStat(int level, int exp, int gold, int hp)
+	{
+		SetStat(level);
+		Exp = exp;
+		Gold = gold;
+		Hp = hp;
+	}
+
 	protected override void OnDead(Stat attacker)
 	{
 		Debug.Log("Player Dead");

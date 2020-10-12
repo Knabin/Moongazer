@@ -30,8 +30,8 @@ public class UI_Menu : UI_Scene
 
 	public void OnButtonClicked_Inventory(PointerEventData data)
 	{
-		//Managers.UI.ShowPopupUI<UI_Inventory>();
-		Managers.UI.ShowPopupUI<UI_Dialog>();
+		Managers.UI.ShowPopupUI<UI_Inventory>();
+		//Managers.UI.ShowPopupUI<UI_Dialog>();
 	}
 
 	public void OnButtonClicked_Setting(PointerEventData data)

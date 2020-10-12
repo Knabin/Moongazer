@@ -20,8 +20,11 @@ public class DataManager
 	{
 		StatDict = LoadJson<Data.StatData, int, Data.Stat>("StatData").MakeDict();
 		EnemyDict = LoadJson<Data.StatData, int, Data.Stat>("EnemyStatData").MakeDict();
+		ItemDict = LoadJson<Data.ItemData, int, Data.Item>("ItemData").MakeDict();
 
-		EnemyNumDict.Add("Skeleton", 1);
+		EnemyNumDict.Add("Slime", 1);
+		EnemyNumDict.Add("Skeleton", 2);
+		EnemyNumDict.Add("Dragon", 3);
 	}
 
 	Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>

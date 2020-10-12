@@ -9,10 +9,24 @@ public class Managers : MonoBehaviour
 
 	#region Contents
 	GameManager _game = new GameManager();
+	TalkManager _talk = new TalkManager();
+	QuestManager _quest = new QuestManager();
 
 	public static GameManager Game
 	{
 		get { return Instance._game; }
+	}
+
+
+	public static TalkManager Talk
+	{
+		get { return Instance._talk; }
+	}
+
+
+	public static QuestManager Quest
+	{
+		get { return Instance._quest; }
 	}
 
 
@@ -66,6 +80,8 @@ public class Managers : MonoBehaviour
 			s_instance._data.Init();
 			s_instance._pool.Init();
 			s_instance._sound.Init();
+			s_instance._talk.Init();
+			s_instance._quest.Init();
 		}
 	}
 

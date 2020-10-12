@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class CameraController : MonoBehaviour
 	Define.CameraMode _mode = Define.CameraMode.QuarterView;
 
 	[SerializeField]
-	Vector3 _delta = new Vector3(0, 3f, -3.0f);
+	Vector3 _delta = new Vector3(0, 3.5f, -4.5f);
 
 	[SerializeField]
 	GameObject _target = null;
@@ -43,12 +44,12 @@ public class CameraController : MonoBehaviour
 
 	float lastZoomSpeed;
 
-	const float rotationSpeed = 5f;
+	float rotationSpeed = 5.0f;
 
-	private void Awake()
-	{
-		//TODO: 마우스 입력값에 따라서 카메라가 플레이어를 공전
-	}
+	float shakeAmount = 0.1f;
+	float shakeTime;
+
+	float angle;
 
 	public void SetTarget(GameObject target)
 	{
@@ -68,12 +69,19 @@ public class CameraController : MonoBehaviour
 			if (Physics.Raycast(_target.transform.position, _delta, out hit, _delta.magnitude, 1 << (int)Define.Layer.Block))
 			{
 				float dist = (hit.point - _target.transform.position).magnitude * 0.8f;
-				transform.position = _target.transform.position + _delta.normalized * dist;
+				transform.position = _target.transform.position + new Vector3(0, 0.5f, 0) + _delta.normalized * dist;
+
 			}
 			else
 			{
 				transform.position = _target.transform.position + _delta;
 				transform.LookAt(_target.transform.position + _delta);
+			}
+
+			if (shakeTime > 0)
+			{
+				transform.position += Random.insideUnitSphere * shakeAmount;
+				shakeTime -= Time.deltaTime;
 			}
 		}
 	}
@@ -82,5 +90,10 @@ public class CameraController : MonoBehaviour
 	{
 		_mode = Define.CameraMode.QuarterView;
 		_delta = delta;
+	}
+
+	public void VibrateForTime(float time)
+	{
+		shakeTime = time;
 	}
 }
