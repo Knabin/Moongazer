@@ -61,7 +61,7 @@ public class UI_Number : UI_Popup
 			}
 
 			// 정답이라면
-			Managers.Game.GetPlayer().GetComponent<PlayerInven>().AddItem(3);
+			//Managers.Game.GetPlayer().GetComponent<PlayerInven>().AddItem(3);
 			// TODO: 소리 재생?
 			ClosePopupUI();
 		}

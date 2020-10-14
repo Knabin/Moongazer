@@ -402,6 +402,7 @@ MonoBehaviour:
   _destPos: {x: 0, y: 0, z: 0}
   _state: 0
   _lockTarget: {fileID: 0}
+  _originPos: {x: 0, y: 0, z: 0}
 --- !u!114 &-4766364278792345754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,12 +613,12 @@ PrefabInstance:
     - target: {fileID: 5857082755051829189, guid: 02ebb6ab9b6fe424db651f81ee7a957a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5857082755051829189, guid: 02ebb6ab9b6fe424db651f81ee7a957a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 408
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5857082755051829189, guid: 02ebb6ab9b6fe424db651f81ee7a957a,
         type: 3}

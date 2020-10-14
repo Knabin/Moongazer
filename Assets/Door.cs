@@ -23,7 +23,7 @@ public class Door : MonoBehaviour
 		if (Vector3.Distance(Managers.Game.GetPlayer().transform.position, transform.position) > 10.0f) return;
 
 		Data.Item item = Managers.Data.ItemDict[_itemNumber];
-		if(_inven.Inventory.ContainsKey(item))
+		if(_inven.Inventory.ContainsKey(_itemNumber))
 		{
 			_inven.RemoveItem(_itemNumber);
 			StartCoroutine("StartOpen");

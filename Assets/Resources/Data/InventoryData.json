@@ -1,12 +1,8 @@
 {
-  "items": [
-    {
-      "index": "1",
-      "amount": "1"
-    },
-    {
-      "index": "2",
-      "amount": "1"
-    }
-  ]
+    "items": [
+        {
+            "index": 1,
+            "amount": 4
+        }
+    ]
 }

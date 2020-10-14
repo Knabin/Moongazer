@@ -26,18 +26,12 @@ public class GameManager
 
 	public void LoadStat()
 	{
-		PlayerStat ps = _player.GetComponent<PlayerStat>();
-		if (level == 1) ps.SetStat(1);
-		else ps.SetStat(level, exp, gold, hp);
+		_player.GetComponent<PlayerStat>().LoadStat();
 	}
 
 	public void SaveStat()
 	{
-		PlayerStat ps = _player.GetComponent<PlayerStat>();
-		level = ps.Level;
-		exp = ps.Exp;
-		gold = ps.Gold;
-		hp = ps.Hp;
+		_player.GetComponent<PlayerStat>().SaveStat();
 	}
 
 	public GameObject Spawn(Define.WorldObject type, string path, Transform parent = null)

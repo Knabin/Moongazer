@@ -13,11 +13,14 @@ public class EnemyController : BaseController
 
 	float _moveDistance = 20.0f;
 
+	[SerializeField]
 	Vector3 _originPos;
 	Quaternion _originRot;
 
 	NavMeshAgent _nav;
 	Animator _anim;
+
+	bool _test = false;
 
 	public override Define.State State
 	{
@@ -58,11 +61,11 @@ public class EnemyController : BaseController
 
 		_stat = gameObject.GetComponent<Stat>();
 
-		_originPos = transform.position;
-		_originRot = transform.rotation;
-
 		_nav = gameObject.GetOrAddComponent<NavMeshAgent>();
 		_anim = gameObject.GetOrAddComponent<Animator>();
+
+		_originPos = transform.position;
+		_originRot = transform.rotation;
 
 		//if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
 		//Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
@@ -86,6 +89,21 @@ public class EnemyController : BaseController
 			State = Define.State.Run;
 			return;
 		}
+
+		if (!_test)
+		{
+			StartCoroutine("CheckOriginalPath");
+			_test = true;
+		}
+	}
+
+	IEnumerator CheckOriginalPath()
+	{
+		yield return new WaitForSeconds(0.2f);
+
+		NavMeshPath path = new NavMeshPath();
+		if (!_nav.CalculatePath(_originPos, path))
+			_originPos = transform.position;
 	}
 
 	protected override void UpdateRun()
@@ -129,7 +147,8 @@ public class EnemyController : BaseController
 	{
 		if (Vector3.Distance(transform.position, _originPos) > 0.1f)
 		{
-			_nav.destination = _originPos;
+			//_nav.destination = _originPos;
+			_nav.SetDestination(_originPos);
 			_nav.stoppingDistance = 0f;
 		}
 		else

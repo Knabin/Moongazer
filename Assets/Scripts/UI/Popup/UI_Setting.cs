@@ -21,7 +21,9 @@ public class UI_Setting : UI_Popup
 		Bind<Button>(typeof(Buttons));
 
 		Get<Button>((int)Buttons.Resume).gameObject.BindEvent(OnButtonClicked_Resume);
+		Get<Button>((int)Buttons.Save).gameObject.BindEvent(OnButtonClicked_Save);
 		Get<Button>((int)Buttons.Options).gameObject.BindEvent(OnButtonClicked_Options);
+		Get<Button>((int)Buttons.Exit).gameObject.BindEvent(OnButtonClicked_Exit);
 
 		Time.timeScale = 0.0f;
 	}
@@ -32,8 +34,24 @@ public class UI_Setting : UI_Popup
 		ClosePopupUI();
 	}
 
+	public void OnButtonClicked_Save(PointerEventData data)
+	{
+		Managers.Game.SaveStat();
+		Time.timeScale = 1.0f;
+		ClosePopupUI();
+	}
+
 	public void OnButtonClicked_Options(PointerEventData data)
 	{
 		Managers.UI.ShowPopupUI<UI_Options>();
+	}
+
+	public void OnButtonClicked_Exit(PointerEventData data)
+	{
+#if UNITY_EDITOR
+		UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
 	}
 }

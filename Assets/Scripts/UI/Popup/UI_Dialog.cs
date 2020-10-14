@@ -16,7 +16,7 @@ public class UI_Dialog : UI_Popup
 		ConfirmButton,
 		CancelButton,
 	}
-	int _id;
+	int _id = -1;
 	int _index;
 	int _maxIndex;
 	bool _isQuest = false;
@@ -37,11 +37,13 @@ public class UI_Dialog : UI_Popup
 
 	private void OnEnable()
 	{
-		if (!_isQuest)
-		{
-			_id = 1000;
-			questTalkIndex = Managers.Quest.GetQuestTalkIndex(_id);
-		}
+		if (_id == -1) return;
+		CheckTalkIndex();
+	}
+
+	void CheckTalkIndex()
+	{
+		questTalkIndex = questTalkIndex = Managers.Quest.GetQuestTalkIndex(_id);
 		if (Managers.Quest.IsNotEndQuest(_id) || !_isQuest)
 		{
 			_maxIndex = Managers.Talk.GetTalkLength(_id + questTalkIndex);
@@ -57,13 +59,14 @@ public class UI_Dialog : UI_Popup
 			string talk = Managers.Talk.GetTalk(_id, 1);
 			Get<Text>((int)Texts.DialogText).text = talk;
 			Get<Image>((int)Images.CancelButton).gameObject.SetActive(false);
-		}		
+		}
 	}
 
 	public void SetId(int id)
 	{
 		_id = id;
 		_index = 0;
+		CheckTalkIndex();
 	}
 
 	public void OnButtonClicked_Confirm(PointerEventData data)
@@ -80,7 +83,6 @@ public class UI_Dialog : UI_Popup
 		}
 		else
 		{
-			//Managers.Quest.CheckQuest(_id);
 			gameObject.SetActive(false);
 		}
 	}
@@ -88,6 +90,5 @@ public class UI_Dialog : UI_Popup
 	public void OnButtonClicked_Close(PointerEventData data)
 	{
 		gameObject.SetActive(false);
-		//ClosePopupUI();
 	}
 }

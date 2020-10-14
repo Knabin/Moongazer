@@ -2,22 +2,32 @@
   "items": [
     {
       "number": "1",
-      "name": "scroll",
+      "image": "hp",
+      "name": "회복 포션",
+      "type": "1"
+    },
+    {
+      "number": "10",
+      "image": "scroll",
+      "name": "통행권",
       "type": "0"
     },
     {
-      "number": "2",
-      "name": "scroll",
+      "number": "11",
+      "image": "ring",
+      "name": "통행권3",
       "type": "0"
     },
     {
-      "number": "3",
-      "name": "ring",
+      "number": "12",
+      "image": "scroll",
+      "name": "통행권4",
       "type": "0"
     },
     {
-      "number": "4",
-      "name": "scroll",
+      "number": "13",
+      "image": "scroll",
+      "name": "통행권4",
       "type": "0"
     }
   ]

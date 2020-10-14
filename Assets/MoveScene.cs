@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class MoveScene : MonoBehaviour
 {
+	bool isMoved = false;
+
 	private void LateUpdate()
 	{
-		if(Vector3.Distance(Managers.Game.GetPlayer().transform.position, transform.position) < 5.0f)
+		if (isMoved) return;
+
+		if (Vector3.Distance(Managers.Game.GetPlayer().transform.position, transform.position) < 3.0f)
 		{
+			isMoved = true;
 			Managers.Scene.LoadScene(Define.Scene.DungeonScene);
 		}
 	}

@@ -18,7 +18,8 @@ public class FieldScene : BaseScene
 		// 초기화 작업
 		GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "Player");
 		Camera.main.gameObject.GetOrAddComponent<CameraController>().SetTarget(player);
-		player.transform.position = new Vector3(-29f, 0.3f, 17);
+		player.transform.position = new Vector3(-19f, 0.12f, -19f);
+		Managers.Game.LoadStat();
 
 		Managers.UI.ShowSceneUI<UI_Attack>();
 		Managers.UI.ShowSceneUI<UI_Status>();
@@ -28,10 +29,10 @@ public class FieldScene : BaseScene
 		Managers.Sound.Play("Bgm/Field", Define.Sound.Bgm);
 
 		GameObject go = new GameObject { name = "SpawningPool" };
+		go.transform.position = new Vector3(10f, 0.1f, -9f);
 		SpawningPool pool = go.GetOrAddComponent<SpawningPool>();
-		pool.transform.position = new Vector3(11f, 0f, 9f);
 		pool.SetEnemyType("Slime");
-		pool.SetKeepMonsterCount(6);
+		pool.SetKeepMonsterCount(5);
 
 		Managers.Quest.questId = 10;
 	}

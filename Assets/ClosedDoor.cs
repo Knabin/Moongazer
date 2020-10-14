@@ -29,7 +29,7 @@ public class ClosedDoor : MonoBehaviour
 		{
 			if(_list.Count == 0)
 			{
-				Managers.Game.GetPlayer().GetComponent<PlayerInven>().AddItem(4);
+				//Managers.Game.GetPlayer().GetComponent<PlayerInven>().AddItem(4);
 				_isEnd = true;
 				enabled = false;
 			}

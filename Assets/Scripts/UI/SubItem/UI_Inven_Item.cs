@@ -23,7 +23,7 @@ public class UI_Inven_Item : UI_Base
 	public void SetInfo(int index)
 	{
 		Data.Item item = Managers.Data.ItemDict[index];
-		Sprite sp = Managers.Resource.Load<Sprite>("Textures/Icons/Inventory/" + item.name);
+		Sprite sp = Managers.Resource.Load<Sprite>("Textures/Icons/Inventory/" + item.image);
 		if (sp != null)
 		{
 			Color color = Get<Image>((int)Images.ItemImage).color;

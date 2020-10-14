@@ -37,7 +37,7 @@ public class CirclePuzzle : MonoBehaviour
 			count++;
 		}
 
-		Managers.Game.GetPlayer().GetComponent<PlayerInven>().AddItem(2);
+		//Managers.Game.GetPlayer().GetComponent<PlayerInven>().AddItem(2);
 
 		for (int i = 0; i < _list.Count; ++i)
 			_list[i].enabled = false;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace Data
@@ -31,6 +32,15 @@ namespace Data
 			return dict;
 		}
 	}
+
+	[Serializable]
+	public class PlayerStat
+	{
+		public int level;
+		public int hp;
+		public int exp;
+		public int gold;
+	}
 	#endregion
 
 	#region Item
@@ -38,6 +48,7 @@ namespace Data
 	public class Item
 	{
 		public int number;
+		public string image;
 		public string name;
 		public int type;
 	}
@@ -56,6 +67,30 @@ namespace Data
 
 			return dict;
 		}
+	}
+
+	[Serializable]
+	public class Inven
+	{
+		public int index;
+		public int amount;
+	}
+
+	[Serializable]
+	public class InvenData : ILoader<int, Inven>
+	{
+		public List<Inven> items = new List<Inven>();
+
+		public Dictionary<int, Inven> MakeDict()
+		{
+			Dictionary<int, Inven> dict = new Dictionary<int, Inven>();
+
+			foreach (Inven item in items)
+				dict.Add(item.index, item);
+
+			return dict;
+		}
+		
 	}
 	#endregion
 }

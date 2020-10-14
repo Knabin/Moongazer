@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PlayerStat : Stat
@@ -84,5 +85,33 @@ public class PlayerStat : Stat
 		Debug.Log("Player Dead");
 
 		GetComponent<PlayerController>().State = Define.State.Die;
+	}
+
+	public void SaveStat()
+	{
+		Data.PlayerStat data = new Data.PlayerStat();
+		data.level = Level;
+		data.hp = Hp;
+		data.gold = Gold;
+		data.exp = Exp;
+		
+		Debug.Log(JsonUtility.ToJson(data));
+		File.WriteAllText(Application.dataPath + "/Resources/Data/PlayerStat.json", JsonUtility.ToJson(data, true));
+	}
+
+	public void LoadStat()
+	{
+		TextAsset textAsset = Managers.Resource.Load<TextAsset>($"Data/PlayerStat");
+		if (textAsset == null) return;
+		Data.PlayerStat stat = JsonUtility.FromJson<Data.PlayerStat>(textAsset.text);
+
+		if (stat != null)
+		{
+			Level = stat.level;
+			SetStat(Level);			// 초기값으로 한번 초기화 처리
+			Hp = stat.hp;
+			Gold = stat.gold;
+			Exp = stat.exp;
+		}
 	}
 }
