@@ -24,14 +24,15 @@ public class UI_Loading : UI_Scene
 
 	IEnumerator Loading()
 	{
+		yield return new WaitForSeconds(1.0f);
 		async = SceneManager.LoadSceneAsync(Managers.Scene.nextScene);
 		async.allowSceneActivation = false;
 
 		float time = 0.0f;
-		while(!async.isDone)
+
+		while (!async.isDone)
 		{
 			yield return null;
-
 			time += Time.deltaTime;
 
 			if(async.progress >= 0.9f)

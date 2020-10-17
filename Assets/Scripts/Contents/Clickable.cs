@@ -17,6 +17,10 @@ public class Clickable : MonoBehaviour
 			Managers.UI.ShowPopupUI<UI_Number>();
 			if (GetComponent<Door>()._isOpen) isTouch = true;
 		}
+		else if(type == Define.ClickableType.Vendor)
+		{
+			Managers.UI.ShowPopupUI<UI_Shop>();
+		}
 		else
 		{
 			UI_Event ev = Managers.UI.ShowPopupUI<UI_Event>();
@@ -28,7 +32,7 @@ public class Clickable : MonoBehaviour
 				switch (type)
 				{
 					case Define.ClickableType.Table:
-						Managers.Game.GetPlayer().GetComponent<PlayerInven>().AddItem(1);
+						Managers.Game.GetPlayer().GetComponent<PlayerInven>().AddItem(10);
 						break;
 				}
 			}

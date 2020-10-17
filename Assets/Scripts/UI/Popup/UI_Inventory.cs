@@ -38,15 +38,19 @@ public class UI_Inventory : UI_Popup
 		Get<Image>((int)Images.CloseButton).gameObject.BindEvent(OnButtonClicked_Close);
 		Get<Text>((int)Texts.GoldText).text = Managers.Game.GetPlayer().GetComponent<PlayerStat>().Gold.ToString();
 
-		int num = Managers.Game.GetPlayer().GetComponent<PlayerInven>().Inventory.Count;
+		PlayerInven inven = Managers.Game.GetPlayer().GetComponent<PlayerInven>();
+		List<int> list = new List<int>(inven.Inventory.Keys);
+
+		int num = inven.Inventory.Count;
+		int check = 0;
 
 		for (int i = 0; i < 25; ++i)
 		{
 			GameObject item = Managers.UI.MakeSubItem<UI_Inven_Item>(parent: gridPanel.transform).gameObject;
 			UI_Inven_Item invenItem = item.GetOrAddComponent<UI_Inven_Item>();
-			if(i < num)
+			if (check < num)
 			{
-				invenItem.SetInfo(i+1);
+				invenItem.SetInfo(inven.Inventory[list[check++]]);
 			}
 			invenItem.transform.localScale = new Vector3(1, 1);
 		}

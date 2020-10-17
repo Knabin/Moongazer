@@ -40,6 +40,7 @@ public class PlayerStat : Stat
 
 	private void Start()
 	{
+		if (_level >= 1) return;
 		_level = 1;
 
 		SetStat(1);
@@ -64,6 +65,7 @@ public class PlayerStat : Stat
 
 	public void SetStat(int level)
 	{
+		if (level < 1) level = 1;
 		Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
 		Data.Stat stat = dict[level];
 

@@ -36,7 +36,7 @@ public class UI_Setting : UI_Popup
 
 	public void OnButtonClicked_Save(PointerEventData data)
 	{
-		Managers.Game.SaveStat();
+		Managers.Game.SaveData();
 		Time.timeScale = 1.0f;
 		ClosePopupUI();
 	}

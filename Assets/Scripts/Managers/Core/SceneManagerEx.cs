@@ -12,7 +12,7 @@ public class SceneManagerEx
 	{
 		// 현재 씬 정리 -> 로딩씬 -> 이동 씬
 		// 현재 씬 정리
-		if(Managers.Game.GetPlayer() != null) Managers.Game.SaveStat();
+		if(Managers.Game.GetPlayer() != null) Managers.Game.SaveData();
 		Managers.Clear();
 
 		string sceneName = GetSceneName(type);

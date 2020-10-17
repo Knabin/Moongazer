@@ -6,7 +6,14 @@ public class FieldScene : BaseScene
 {
 	public override void Clear()
 	{
-		Managers.Game.SaveStat();
+		foreach (GameObject go in Managers.Game._monsters)
+		{
+			if (go == null || !go.activeSelf)
+			{
+				Managers.Game.Destroy(go);
+				break;
+			}
+		}
 	}
 
 	protected override void Init()
@@ -19,7 +26,7 @@ public class FieldScene : BaseScene
 		GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "Player");
 		Camera.main.gameObject.GetOrAddComponent<CameraController>().SetTarget(player);
 		player.transform.position = new Vector3(-19f, 0.12f, -19f);
-		Managers.Game.LoadStat();
+		Managers.Game.LoadData();
 
 		Managers.UI.ShowSceneUI<UI_Attack>();
 		Managers.UI.ShowSceneUI<UI_Status>();

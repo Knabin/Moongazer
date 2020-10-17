@@ -30,6 +30,7 @@ public class UI_Dialog : UI_Popup
 		Bind<Text>(typeof(Texts));
 		Bind<Image>(typeof(Images));
 
+		Get<Image>((int)Images.CancelButton).gameObject.BindEvent(OnButtonClicked_Cancel);
 		Get<Image>((int)Images.ConfirmButton).gameObject.BindEvent(OnButtonClicked_Confirm);
 		Get<Image>((int)Images.CancelButton).gameObject.BindEvent(OnButtonClicked_Close);
 		Get<Image>((int)Images.CancelButton).gameObject.SetActive(false);
@@ -56,7 +57,7 @@ public class UI_Dialog : UI_Popup
 		else
 		{
 			Debug.Log("끝!");
-			string talk = Managers.Talk.GetTalk(_id, 1);
+			string talk = Managers.Talk.GetTalk(_id, 0);
 			Get<Text>((int)Texts.DialogText).text = talk;
 			Get<Image>((int)Images.CancelButton).gameObject.SetActive(false);
 		}
@@ -90,5 +91,11 @@ public class UI_Dialog : UI_Popup
 	public void OnButtonClicked_Close(PointerEventData data)
 	{
 		gameObject.SetActive(false);
+	}
+
+	public void OnButtonClicked_Cancel(PointerEventData data)
+	{
+		Managers.Quest.questActionIndex = 0;
+		Managers.UI.ClosePopupUI();
 	}
 }

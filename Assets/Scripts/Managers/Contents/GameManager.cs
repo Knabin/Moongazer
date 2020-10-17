@@ -24,14 +24,15 @@ public class GameManager
 
 	public GameObject GetPlayer() { return _player; }
 
-	public void LoadStat()
+	public void LoadData()
 	{
 		_player.GetComponent<PlayerStat>().LoadStat();
 	}
 
-	public void SaveStat()
+	public void SaveData()
 	{
 		_player.GetComponent<PlayerStat>().SaveStat();
+		_player.GetComponent<PlayerInven>().SaveInven();
 	}
 
 	public GameObject Spawn(Define.WorldObject type, string path, Transform parent = null)
@@ -55,6 +56,7 @@ public class GameManager
 
 	public Define.WorldObject GetWorldObjectType(GameObject go)
 	{
+		if(go == null) return Define.WorldObject.Unknown;
 		BaseController bc = go.GetComponent<BaseController>();
 
 		if (bc == null)

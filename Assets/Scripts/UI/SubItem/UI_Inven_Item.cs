@@ -8,6 +8,12 @@ public class UI_Inven_Item : UI_Base
 	enum Images
 	{
 		ItemImage,
+		ItemCountImage,
+	}
+
+	enum Texts
+	{
+		ItemCountText,
 	}
 
 	string _name;
@@ -15,14 +21,16 @@ public class UI_Inven_Item : UI_Base
 	public override void Init()
 	{
 		Bind<Image>(typeof(Images));
-		//Get<GameObject>((int)GameObjects.ItemNameText).GetComponent<Text>().text = _name;
+		Bind<Text>(typeof(Texts));
 
-		Get<Image>((int)Images.ItemImage).gameObject.BindEvent((PointerEventData) => { Debug.Log($"아이템 클릭! {_name}"); });
+
+
+		Get<Image>((int)Images.ItemCountImage).gameObject.SetActive(false);
 	}
 
-	public void SetInfo(int index)
+	public void SetInfo(Data.Inven inven)
 	{
-		Data.Item item = Managers.Data.ItemDict[index];
+		Data.Item item = Managers.Data.ItemDict[inven.index];
 		Sprite sp = Managers.Resource.Load<Sprite>("Textures/Icons/Inventory/" + item.image);
 		if (sp != null)
 		{
@@ -31,6 +39,12 @@ public class UI_Inven_Item : UI_Base
 
 			Get<Image>((int)Images.ItemImage).sprite = sp;
 			Get<Image>((int)Images.ItemImage).color = color;
+		}
+
+		if (inven.amount > 1)
+		{
+			Get<Image>((int)Images.ItemCountImage).gameObject.SetActive(true);
+			Get<Text>((int)Texts.ItemCountText).text = inven.amount.ToString();
 		}
 	}
 }

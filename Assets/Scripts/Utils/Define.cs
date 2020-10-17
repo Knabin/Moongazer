@@ -82,5 +82,6 @@ public class Define
 		None,
 		Table,
 		PasswordDoor,
+		Vendor,
 	}
 }
