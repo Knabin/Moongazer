@@ -4,31 +4,43 @@
       "number": "1",
       "image": "hp",
       "name": "회복 포션",
-      "type": "1"
+      "type": "1",
+      "info": "체력이 20 증가하는 맛있는 포션이다."
+    },
+    {
+      "number": "2",
+      "image": "Meat",
+      "name": "슬라임 고기",
+      "type": "0",
+      "info": "...정말로 슬라임 고기가 맞을까?"
     },
     {
       "number": "10",
       "image": "scroll",
       "name": "통행권",
-      "type": "0"
+      "type": "0",
+      "info": "던전의 첫 번째 통행권이다."
     },
     {
       "number": "11",
       "image": "ring",
-      "name": "통행권3",
-      "type": "0"
+      "name": "통행권2",
+      "type": "0",
+      "info": "던전의 두 번째 통행권이다."
     },
     {
       "number": "12",
       "image": "scroll",
-      "name": "통행권4",
-      "type": "0"
+      "name": "통행권3",
+      "type": "0",
+      "info": "던전의 세 번째 통행권이다."
     },
     {
       "number": "13",
       "image": "scroll",
       "name": "통행권4",
-      "type": "0"
+      "type": "0",
+      "info": "던전의 네 번째 통행권이다."
     }
   ]
 }

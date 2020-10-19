@@ -93,7 +93,7 @@ public class PlayerStat : Stat
 	{
 		Data.PlayerStat data = new Data.PlayerStat();
 		data.level = Level;
-		data.hp = Hp;
+		data.hp = (Hp <= 0) ? MaxHp : Hp;
 		data.gold = Gold;
 		data.exp = Exp;
 		

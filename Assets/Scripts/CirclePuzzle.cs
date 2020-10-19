@@ -38,7 +38,7 @@ public class CirclePuzzle : MonoBehaviour
 		}
 
 		for (int i = 0; i < _list.Count; ++i)
-			_list[i].GetComponent<CirclePuzzleSub>().enabled = false;
+			_list[i].GetComponent<Collider>().enabled = false;
 
 		Managers.Sound.Play("Sfx/QuestOk", Define.Sound.Effect);
 		_isClear = true;

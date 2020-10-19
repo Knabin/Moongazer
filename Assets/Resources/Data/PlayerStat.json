@@ -1,6 +1,6 @@
 {
-    "level": 1,
-    "hp": 50,
-    "exp": 0,
-    "gold": 0
+    "level": 2,
+    "hp": 0,
+    "exp": 50,
+    "gold": 123
 }

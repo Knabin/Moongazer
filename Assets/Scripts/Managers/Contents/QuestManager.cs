@@ -19,7 +19,7 @@ public class QuestManager
 	void GenerateData()
 	{
 		questList.Add(10, new QuestData("슬라임 퇴치", new int[] { 1000, 500, 500, 500, 500, 500 }));
-		questList.Add(20, new QuestData("스켈레톤 퇴치", new int[] { 0 }));
+		questList.Add(20, new QuestData("스켈레톤 퇴치", new int[] { 501, 501, 501, 501, 501 }));
 		questCount = 0;
 	}
 

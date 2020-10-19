@@ -51,6 +51,7 @@ namespace Data
 		public string image;
 		public string name;
 		public int type;
+		public string info;
 	}
 
 	[Serializable]

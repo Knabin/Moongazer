@@ -11,4 +11,13 @@ public class Skeletons : MonoBehaviour
 			Managers.Game._monsters.Add(go.gameObject);
 		}
 	}
+
+	private void Update()
+	{
+		if(Managers.Game._monsters.Count == 0)
+		{
+			Managers.Game.GetPlayer().GetComponent<PlayerInven>().AddItem(13);
+			enabled = false;
+		}
+	}
 }

@@ -66,7 +66,7 @@ public class DragonController : BaseController
 		Managers.Pool.CreatePool(_fireBall);
 		_lockTarget = Managers.Game.GetPlayer();
 
-		Managers.UI.ShowSceneUI<UI_HPBarBoss>();
+		Managers.Game._monsters.Add(gameObject);
 	}
 
 	public override void OnAttacked(Stat attacker)
@@ -155,6 +155,11 @@ public class DragonController : BaseController
 	public void PlaySound(string fileName)
 	{
 		Managers.Sound.Play($"Sfx/{fileName}", Define.Sound.Enemy);
+	}
+
+	public void DragonDead()
+	{
+		gameObject.SetActive(false);
 	}
 
 	IEnumerator SetSkillRandom()

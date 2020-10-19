@@ -11,7 +11,6 @@ public class PlayerInven : MonoBehaviour
 	{
 		Inventory = Managers.Data.LoadJson<Data.InvenData, int, Data.Inven>("InventoryData").MakeDict();
 		AddItem(1);
-		AddItem(10);
 		SaveInven();
 	}
 
