@@ -22,8 +22,6 @@ public class DungeonScene : BaseScene
 		player.transform.position = new Vector3(-30, -3, 0);
 		player.transform.Rotate(Quaternion.Euler(0f, 90f, 0f).eulerAngles);
 
-		Managers.Game.LoadData();
-
 		Managers.Sound.Play("Bgm/Dungeon", Define.Sound.Bgm);
 
 		Managers.UI.ShowSceneUI<UI_Attack>();

@@ -9,11 +9,14 @@ public class UI_Inventory : UI_Popup
 	enum GameObjects
 	{
 		GridPanel,
+		Info,
 	}
 
 	enum Texts
 	{
 		GoldText,
+		ItemName,
+		ItemInfo,
 	}
 
 	enum Images
@@ -22,7 +25,11 @@ public class UI_Inventory : UI_Popup
 		CloseButton,
 	}
 
-    public override void Init()
+	bool isClicked = false;
+
+	PlayerInven inven;
+
+	public override void Init()
     {
 		base.Init();
 
@@ -34,11 +41,11 @@ public class UI_Inventory : UI_Popup
 		foreach (Transform child in gridPanel.transform)
 			Managers.Resource.Destroy(child.gameObject);
 
-		Get<Image>((int)Images.Close).gameObject.BindEvent(OnButtonClicked_Close);
+		Get<Image>((int)Images.Close).gameObject.BindEvent(OnButtonClicked_Back);
 		Get<Image>((int)Images.CloseButton).gameObject.BindEvent(OnButtonClicked_Close);
 		Get<Text>((int)Texts.GoldText).text = Managers.Game.GetPlayer().GetComponent<PlayerStat>().Gold.ToString();
 
-		PlayerInven inven = Managers.Game.GetPlayer().GetComponent<PlayerInven>();
+		inven = Managers.Game.GetPlayer().GetComponent<PlayerInven>();
 		List<int> list = new List<int>(inven.Inventory.Keys);
 
 		int num = inven.Inventory.Count;
@@ -50,10 +57,30 @@ public class UI_Inventory : UI_Popup
 			UI_Inven_Item invenItem = item.GetOrAddComponent<UI_Inven_Item>();
 			if (check < num)
 			{
-				invenItem.SetInfo(inven.Inventory[list[check++]]);
+				invenItem.SetInfo(inven.Inventory[list[check++]], this);
 			}
 			invenItem.transform.localScale = new Vector3(1, 1);
 		}
+
+		Get<GameObject>((int)GameObjects.Info).SetActive(false);
+	}
+
+	public void SetItemInfo(int index)
+	{
+		Get<Text>((int)Texts.ItemName).text = Managers.Data.ItemDict[index].name;
+		Get<Text>((int)Texts.ItemInfo).text = Managers.Data.ItemDict[index].info;
+		Get<GameObject>((int)GameObjects.Info).SetActive(true);
+		isClicked = true;
+	}
+
+	public void OnButtonClicked_Back(PointerEventData data)
+	{
+		if(isClicked)
+		{
+			Get<GameObject>((int)GameObjects.Info).SetActive(false);
+			isClicked = false;
+		}
+		else ClosePopupUI();
 	}
 
 	public void OnButtonClicked_Close(PointerEventData data)

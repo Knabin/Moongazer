@@ -418,6 +418,11 @@ public class PlayerController : BaseController
 		}
 	}
 
+	public void AddHp(int amount)
+	{
+		stat.Cure(amount);
+	}
+
 	void OnMouseEvent(Define.MouseEvent evt)
 	{
 		switch (_state)

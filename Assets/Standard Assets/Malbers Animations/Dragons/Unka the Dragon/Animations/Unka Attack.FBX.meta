@@ -1518,15 +1518,22 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1
-        functionName: AttackToIdle
-        data: 
+      - time: 0.0990991
+        functionName: PlaySound
+        data: dragon_bite
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.45599294
         functionName: SkillFire
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: AttackToIdle
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -1803,14 +1810,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.12903225
+      - time: 0.16816817
         functionName: PlaySound
-        data: dragon_down
+        data: dragon_right
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.54502934
+      - time: 0.55103534
         functionName: HitEvent
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -7148,9 +7155,16 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 1
+      - time: 0.8108108
         functionName: PlaySound
         data: dragon_special
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: AttackToIdle
+        data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0

@@ -26,7 +26,6 @@ public class FieldScene : BaseScene
 		GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "Player");
 		Camera.main.gameObject.GetOrAddComponent<CameraController>().SetTarget(player);
 		player.transform.position = new Vector3(-19f, 0.12f, -19f);
-		Managers.Game.LoadData();
 
 		Managers.UI.ShowSceneUI<UI_Attack>();
 		Managers.UI.ShowSceneUI<UI_Status>();

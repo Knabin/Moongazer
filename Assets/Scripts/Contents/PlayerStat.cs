@@ -40,6 +40,8 @@ public class PlayerStat : Stat
 
 	private void Start()
 	{
+		LoadStat();
+
 		if (_level >= 1) return;
 		_level = 1;
 
@@ -48,6 +50,12 @@ public class PlayerStat : Stat
 		_defence = 0;
 		_moveSpeed = 8.0f;
 		_gold = 0;
+	}
+
+	public void Cure(int amount)
+	{
+		Hp += amount;
+		if (Hp > MaxHp) Hp = MaxHp;
 	}
 
 	public override void OnAttacked(Stat attacker)
@@ -80,6 +88,14 @@ public class PlayerStat : Stat
 		Exp = exp;
 		Gold = gold;
 		Hp = hp;
+	}
+
+	public bool BuyItem(int price)
+	{
+		if (Gold < price) return false;
+
+		Gold -= price;
+		return true;
 	}
 
 	protected override void OnDead(Stat attacker)

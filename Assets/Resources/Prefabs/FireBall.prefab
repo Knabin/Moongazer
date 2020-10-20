@@ -88,7 +88,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.36e-43, y: NaN, z: 7.33e-43, w: 40774.188}
+  m_BoundingSphereOverride: {x: 6.61e-43, y: 3.5e-44, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -23553,10 +23553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a96cb66317977446938bad670860868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatIsProp:
-    serializedVersion: 2
-    m_Bits: 4096
-  explosionForce: 500
+  layerMask: 0
   radius: 2
   explosion: {fileID: 7887752024058249349}
 --- !u!114 &6353669342415149942
@@ -32945,6 +32942,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2090967520417978507}
     m_Modifications:
+    - target: {fileID: 3496060812171299421, guid: f5d672588d12726449429a17c21f1b0e,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496111507827116617, guid: f5d672588d12726449429a17c21f1b0e,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496128466570934263, guid: f5d672588d12726449429a17c21f1b0e,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621108502187380361, guid: f5d672588d12726449429a17c21f1b0e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621127118683205151, guid: f5d672588d12726449429a17c21f1b0e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3621723705857375153, guid: f5d672588d12726449429a17c21f1b0e,
         type: 3}
       propertyPath: m_Name

@@ -125,7 +125,7 @@ public class DragonController : BaseController
 
 	public void SkillFire()
 	{
-		Managers.Pool.Pop(_fireBall);
+		Managers.Pool.Pop(_fireBall).transform.position = _fireBallPosition.position;
 	}
 
 	public void SkillBreath()

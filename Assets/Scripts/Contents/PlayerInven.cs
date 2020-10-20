@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -6,11 +7,11 @@ using UnityEngine;
 public class PlayerInven : MonoBehaviour
 {
 	public Dictionary<int, Data.Inven> Inventory { get; private set; } = new Dictionary<int, Data.Inven>();
+	public Action OnInvenChangedHandler = null;
 
-	private void Start()
+	private void Awake()
 	{
 		Inventory = Managers.Data.LoadJson<Data.InvenData, int, Data.Inven>("InventoryData").MakeDict();
-		AddItem(1);
 		SaveInven();
 	}
 
@@ -24,8 +25,9 @@ public class PlayerInven : MonoBehaviour
 			item2.amount = 1;
 			Inventory.Add(itemIndex, item2);
 		}
-		//if (Inventory.ContainsKey(item)) ++Inventory[item];
-		//else Inventory.Add(item, 1);
+
+		if (OnInvenChangedHandler != null)
+			OnInvenChangedHandler.Invoke();
 	}
 
 	public void RemoveItem(int itemIndex)
@@ -35,6 +37,9 @@ public class PlayerInven : MonoBehaviour
 		{
 			Inventory.Remove(itemIndex);
 		}
+
+		if (OnInvenChangedHandler != null)
+			OnInvenChangedHandler.Invoke();
 	}
 
 	public void SaveInven()

@@ -6,8 +6,7 @@ public class FireBall : MonoBehaviour
 {
 	Vector3 targetPosition;
 	public int layerMask;
-	public float radius = 2f;
-
+	public float radius = 1f;
 
 	public ParticleSystem explosion;
 
@@ -17,6 +16,11 @@ public class FireBall : MonoBehaviour
 		Invoke("EnableCollider", 0.2f);
 		targetPosition = Managers.Game.GetPlayer().transform.position;
 		layerMask = (-1) - (1 << (int)Define.Layer.Enemy);
+	}
+
+	private void OnEnable()
+	{
+		targetPosition = Managers.Game.GetPlayer().transform.position;
 	}
 
 	void Update()
@@ -40,8 +44,13 @@ public class FireBall : MonoBehaviour
 		}
 
 		explosion.Play();
-		//explosionAudio.Play();
 
+		StartCoroutine("Wait");
+	}
+
+	IEnumerator Wait()
+	{
+		yield return new WaitForSeconds(explosion.main.duration);
 		Managers.Pool.Push(GetComponent<Poolable>());
 	}
 }

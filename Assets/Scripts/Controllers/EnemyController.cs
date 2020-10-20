@@ -22,6 +22,8 @@ public class EnemyController : BaseController
 
 	bool _test = false;
 
+	public bool _isQuest = false;
+
 	public override Define.State State
 	{
 		get { return _state; }
@@ -66,6 +68,8 @@ public class EnemyController : BaseController
 
 		_originPos = transform.position;
 		_originRot = transform.rotation;
+
+		if (gameObject.name.Equals("Slime")) _isQuest = true;
 
 		//if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
 		//Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
@@ -182,7 +186,7 @@ public class EnemyController : BaseController
 	{
 		if (Util.IsAnimationDone(_anim, "Die"))
 		{
-			Managers.Quest.CheckQuest(GetComponent<ObjData>().id);
+			if(_isQuest) Managers.Quest.CheckQuest(GetComponent<ObjData>().id);
 			gameObject.SetActive(false);
 		}
 	}

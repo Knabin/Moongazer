@@ -52,6 +52,7 @@ namespace Data
 		public string name;
 		public int type;
 		public string info;
+		public int price;
 	}
 
 	[Serializable]
